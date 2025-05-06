@@ -4,7 +4,6 @@
 */
 
 #include <stdio.h>
-#include <stdbool.h>
 
 int main() {
 
@@ -12,14 +11,14 @@ int main() {
     int count = 0;
 
     while (count < 5) {
-        printf("count: %d\n", count);
+        printf("count: %i\n", count);
         count++;
     }
 
     // Do while:
     // note how count is now 5 from above loop
     do {
-        printf("do count: %d\n", count);
+        printf("do count: %i\n", count);
         count--; 
     }
     while (count > 0);
@@ -28,16 +27,16 @@ int main() {
     // for (int iterator = start value; condition; increment amount){...}
     int i;
     for (i = 0; i < 5; i++) {
-        printf("for loop i= %d\n", i);
+        printf("for loop i= %i\n", i);
     }
 
     // Nested loops
     for (int row = 1; row <= 3; ++row) {
-        printf("Outer (row): %d\n", row);  // Executes 2 times
+        printf("Outer (row): %i\n", row);  // Executes 2 times
 
     // Inner loop
         for (int column = 1; column <= 3; ++column) {
-            printf("\tInner (col): %d\n", column);  // Executes 6 times (2 * 3)
+            printf("\tInner (col): %i\n", column);  // Executes 6 times (2 * 3)
         }
     }
 
@@ -46,7 +45,7 @@ int main() {
         if (i == 4) {
           break;    // loop breaks out at 4 and stops
         }
-        printf("another loop with a break: %d\n", i);
+        printf("another loop with a break: %i\n", i);
       }
 
     
@@ -54,7 +53,7 @@ int main() {
         if (i == 4) {
             continue;   // goes back to top of loop
         }
-            printf("cont. loop: %d\n", i);
+            printf("cont. loop: %i\n", i);
     } 
 
     return 0;
