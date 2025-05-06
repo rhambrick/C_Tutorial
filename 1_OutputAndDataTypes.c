@@ -17,8 +17,8 @@ int main() {
     printf("Hello, bro.");
     printf("Have a good day bro!"); 
 
-    // New lines (\n)
-    printf("\n\nHello, bro.\n");
+    // New lines (\n) and tabs (\t)
+    printf("\n\nHello, bro.\t");
     printf("Have a good day bro!\n\n"); 
 
     // Variables
@@ -62,3 +62,10 @@ int main() {
 
     return 0;   // return ends the function, sending a 0 to the operating system here.
 }
+
+// if you have git installed, in terminal do the following:
+// git init     (initialize)
+// (then each time you add new stuff do):
+// git add *.c     (add all .c files in this case)
+// git commit -m "commit message here"  (commit your changes to the git folder)
+// now you have a branch history going to backup files
