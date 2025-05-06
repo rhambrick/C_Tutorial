@@ -1,4 +1,4 @@
-/* Compile and run commands: (make sure terminal is open in the right folder and u installed the gcc compiler)
+/* Compile and run commands:
     gcc 5_UserInput.c -o out
     out.exe
 */
