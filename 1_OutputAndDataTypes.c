@@ -66,6 +66,6 @@ int main() {
 // if you have git installed, in terminal do the following:
 // git init     (initialize)
 // (then each time you add new stuff do):
-// git add *.c     (add all .c files in this case)
+// git add *.c     (add all .c files in this case, use \*.c on mac/linux)
 // git commit -m "commit message here"  (commit your changes to the git folder)
 // now you have a branch history going to backup files
