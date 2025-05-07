@@ -4,7 +4,6 @@
 */
 
 #include <stdio.h>
-#include <stdlib.h>
 
 int main() {
     float num;
@@ -30,6 +29,11 @@ int main() {
 
     // If input is valid, proceed with using the integer
     printf("You did it! Here's what you enterd: %f\n", num);
+
+    // This is just for simple input, but you can typically take user input as a string
+    // then break it up into chunks and make sure each chunk is valid before moving forward.
+    // Thinking of edge cases / ways users could cause errors is tricky sometimes, but also rewarding
+    // when your code can withstand anything.
 
     return 0;
 }
