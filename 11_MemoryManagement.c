@@ -1,8 +1,4 @@
-/* Compile and run commands:
-    gcc 11_MemoryManagement.c -o out
-    out.exe
-
-
+/*
     As you may know, when a program is run, the binary is loaded from your hard drive
     to the RAM. If I do char letters[50] = "ABCDEFG";, that array takes up 50 memory
     bytes, despite not really needing to. Now that's not a whole lot given a lot of
@@ -16,6 +12,10 @@
 #include <stdlib.h>
 
 void leakyFunction();
+
+// Hey just FYI, this program probably has leaks in it. I demonstrate leaks and tried to clear it,
+// but was in a hurry!
+// Probably not a big deal, but very bad practice! Educational tho.
 
 int main() {
     /*  So what I described above, with my 50 long char array, was called Static Memory, or "compile time" memory.
@@ -80,7 +80,7 @@ int main() {
     ptr1[0] = 1684234849;
     // We are storing this entire 4-byte integer value into the memory location pointed to by ptr1.
 
-    printf("%i is %c %c %c %c", *ptr1, ptr2[0], ptr2[1], ptr2[2], ptr2[3]);
+    printf("%i is %c %c %c %c \n", *ptr1, ptr2[0], ptr2[1], ptr2[2], ptr2[3]);
     // *ptr1 prints the value at the memory address. ptr2 array prints out how that 4-byte box was cut up into 1 byte values.
     // each 1 byte value in the box corresponds to a letter's ascii value. By interpreting it as a string, it prints the chars.
 
@@ -90,15 +90,15 @@ int main() {
     // Reallocating: when you need more memory, you reallocate
     // It saves what's there and moves it to a bigger chunk of reserved memory
     int size = 8;
-    int *ptr2 = realloc(ptr1, size);
-    // pointer2 points to the start of the new allocation, pointer1 is the start of the old, and size is the new size in bytes.
+    int *ptr99 = realloc(ptr1, size);
+    // pointer99 points to the start of the new allocation, pointer1 is the start of the old, and size is the new size in bytes.
 
     // realloc will return a NULL pointer if the new memory cannot be allocated (quite unlikely) but it's good practice to check
-    if (ptr2 == NULL) {
+    if (ptr99 == NULL) {
         printf("Failed. Unable to resize memory");
     } else {
-        printf("Success. %i bytes reallocated at address %p \n", size, ptr2);
-        ptr1 = ptr2;  // Update ptr1 to point to the newly allocated memory
+        printf("Success. %i bytes reallocated at address %p \n", size, ptr99);
+        ptr1 = ptr99;  // Update ptr1 to point to the newly allocated memory
       }
 
     // Freeing memory:
@@ -113,28 +113,33 @@ int main() {
     // It's good practice to reset pointers to NULL to prevent accidentally using them and corrupting data that took that spot in RAM
     ptr3 = NULL;
 
-    free(ptr);
-    free(ptr2);
-    ptr = NULL;
-    ptr2 = NULL;
-
     // Memory Leaks:
     // These happen when dynamic memory is allocated but not freed. 
     int x = 5;  // ok lets say X sits at address 57 (arbitrary madeup address)
     int *ptr4;
     ptr4 = calloc(2, sizeof(*ptr4));    // now we set ptr4 to point to 2 carved out slices of memory, each the size of what ptr4 points to (int)
     // let's say prt4 is pointing to address 62 (also made up) and it's allocated box goes 62-65, 66-69 as per calloc.
+    free(ptr4); // Ignore this, I just don't want actual leaks.
     ptr4 = &x;      // now ptr4 points to address 57
-    // and the allocated memory from 62-69 is lost
+    // and the allocated memory from 62-69 is lost (if you ignore the fact I freed it)
 
     // This can also happen within functions, memory allocated in a function will remain even after the funciton is run
     leakyFunction();    // see function for example
-    printf("The function has ended");
+    printf("The function has ended.\n");
 
     // Leaks can also happen if realloc fails, it'll return a NULL pointer but the original memory stays allocated (good reason to check like in line 96)
     
     // A lot is going on here, but the final example in file 12_MemoryExample.c will be a "real world" sample from the textbook.
 
+    // name pointers better than this btw, this is hard to read lmao
+    free(people);
+    free(ptr);
+    free(ptr2);
+    free(ptr99);
+    people = NULL;
+    ptr = NULL;
+    ptr2 = NULL;
+    ptr99 = NULL;
 
    return 0;
 }
@@ -143,4 +148,5 @@ void leakyFunction() {
     int *ptr;
     ptr = malloc(sizeof(*ptr));
     printf("I am the leaky function, ending my run but not freeing memory! My variables are clear though.\n");
+    free(ptr); // ignore this for memory leak example, I just don't want actual leaks.
   }
