@@ -41,3 +41,7 @@ Next, run the command
 Add the MSYS2 bin directory (e.g., C:\msys64\mingw64\bin) to your system's PATH environment variable (https://stackoverflow.com/questions/5733220/how-do-i-add-the-mingw-bin-directory-to-my-system-path)
 
 After completing the installation and setting the PATH, open a command prompt and type gcc --version to verify that GCC is installed and accessible.
+
+This is a very basic way to compile with the terminal or powershell, but you may also prefer to use an IDE (integrated development environment) which handles a lot of compilaiton, library management, execution, debugging, etc. all in one program (at the cost of extra complexity, abstraction and disk space). 
+
+My go-to IDE's are Microsoft's Visual Studio and JetBrain's CLion.
